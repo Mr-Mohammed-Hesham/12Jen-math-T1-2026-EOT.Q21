@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📝 Written Exam: Completing the Square - رياضيات 12 عام | Mr. Mohammed Hesham</title>
+<meta name="description" content="امتحان كتابي (مقالي) عن حل المعادلات التربيعية بإكمال المربع - صف 12 عام">
+<meta name="author" content="Mr. Mohammed Hesham">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Cairo', sans-serif; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
+body.en-mode { font-family: 'Inter', sans-serif; direction: ltr; }
+.arabic-math { font-family: 'Amiri', 'Cairo', serif; }
+.math-display { display: inline-block; direction: ltr; font-family: 'Amiri', serif; font-size: 1.15em; padding: 2px 8px; background: #fef3c7; border-radius: 4px; margin: 2px; color: #92400e; font-weight: 700; }
+.save-indicator { position: fixed; bottom: 20px; left: 20px; z-index: 200; background: #10b981; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+body.en-mode .save-indicator { left: auto; right: 20px; }
+.save-indicator.show { opacity: 1; }
+.lang-switch { position: fixed; top: 16px; left: 16px; z-index: 100; background: white; padding: 6px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: flex; gap: 4px; border: 2px solid #d97706; }
+body.en-mode .lang-switch { left: auto; right: 16px; }
+.lang-btn { padding: 6px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: all 0.3s; border: none; font-size: 0.875rem; background: transparent; color: #6b7280; }
+.lang-btn.active { background: #d97706; color: white; box-shadow: 0 2px 6px rgba(217,119,6,0.4); }
+.timer-warning { color: #dc2626 !important; animation: pulse 1s infinite; }
+@keyframes pulse { 50% { opacity: 0.7; } }
+@media print { .no-print { display: none !important; } .model-box { display: none !important; } textarea { border: 1px solid #9ca3af !important; } }
+.svg-graph { display: block; margin: 12px auto; background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 8px; max-width: 100%; }
+.graph-container { text-align: center; margin: 10px 0; }
+.q-card { background: white; border: 2px solid #f59e0b; border-radius: 16px; padding: 20px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.q-statement { background: #dbeafe; border: 2px solid #2563eb; border-radius: 8px; padding: 12px; font-size: 1.05rem; font-weight: 700; color: #1e3a8a; }
+.answer-area { width: 100%; min-height: 170px; border: 2px solid #d97706; border-radius: 10px; background: #fffbeb; padding: 12px; font-family: 'Cairo', sans-serif; font-size: 1rem; line-height: 2; background-image: repeating-linear-gradient(transparent, transparent 31px, #cbd5e1 32px); resize: vertical; }
+.answer-area:focus { outline: none; border-color: #2563eb; background-color: #fefce8; }
+.model-box { background: #f0fdf4; border: 2px solid #16a34a; border-radius: 10px; padding: 14px; margin-top: 12px; }
+.model-step { padding: 6px 10px; border-bottom: 1px dashed #86efac; font-family: 'Amiri', serif; direction: ltr; text-align: left; font-size: 1.05rem; color: #14532d; }
+.model-step .step-no { display: inline-block; background: #16a34a; color: white; border-radius: 50%; width: 22px; height: 22px; text-align: center; font-size: 0.8rem; line-height: 22px; margin-right: 8px; font-family: 'Cairo', sans-serif; }
+.final-answer { background: #dcfce7; border: 2px solid #16a34a; border-radius: 8px; padding: 10px; margin-top: 10px; text-align: center; font-weight: 800; color: #166534; font-size: 1.1rem; }
+.rubric-chip { display: inline-block; background: #fef3c7; border: 1px solid #f59e0b; color: #92400e; border-radius: 14px; padding: 2px 10px; font-size: 0.75rem; margin: 2px; font-weight: 600; }
+.score-input { width: 70px; border: 2px solid #2563eb; border-radius: 8px; padding: 6px; text-align: center; font-weight: 800; font-size: 1.1rem; color: #1e40af; background: #eff6ff; }
+.check-item { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: #374151; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 4px 10px; }
+.section-head { background: linear-gradient(135deg, #d97706, #b45309); color: white; border-radius: 12px; padding: 10px 20px; font-weight: 800; font-size: 1.15rem; margin: 30px 0 18px; box-shadow: 0 4px 10px rgba(180,83,9,0.3); }
+</style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+
+<div class="lang-switch no-print">
+<button class="lang-btn active" onclick="setLanguage('ar')" id="btn-ar">عربي</button>
+<button class="lang-btn" onclick="setLanguage('en')" id="btn-en">EN</button>
+</div>
+
+<div id="saveIndicator" class="save-indicator">💾 <span data-ar="تم الحفظ" data-en="Saved">تم الحفظ</span></div>
+
+<div id="timer-container" class="max-w-4xl mx-auto mb-4 text-center no-print">
+<div class="bg-white p-4 rounded-2xl shadow-lg inline-block border-2 border-amber-200">
+<span class="text-gray-600 ml-2">⏰ <span data-ar="الوقت المتبقي:" data-en="Time Left:">الوقت المتبقي:</span></span>
+<span id="timer" class="text-2xl font-bold text-amber-700 font-mono">60:00</span>
+<span class="ml-3 inline-block bg-amber-700 text-white px-3 py-1 rounded-full text-xs font-bold">📝 <span data-ar="امتحان كتابي (مقالي)" data-en="Written Exam">امتحان كتابي (مقالي)</span> - 10 <span data-ar="مسائل" data-en="Problems">مسائل</span></span>
+</div>
+</div>
+
+<div class="max-w-4xl mx-auto mb-6 flex flex-wrap gap-3 justify-center no-print">
+<button onclick="toggleAllModels()" class="bg-green-700 hover:bg-green-800 text-white px-5 py-2 rounded-xl font-medium transition shadow">🔑 <span data-ar="إظهار/إخفاء الحلول النموذجية" data-en="Show/Hide Model Solutions">إظهار/إخفاء الحلول النموذجية</span></button>
+<button onclick="gradeExam()" class="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2 rounded-xl font-medium transition shadow">🧮 <span data-ar="احتساب المجموع" data-en="Compute Total">احتساب المجموع</span></button>
+<button onclick="window.print()" class="bg-gray-700 hover:bg-gray-900 text-white px-5 py-2 rounded-xl font-medium transition shadow">🖨️ <span data-ar="طباعة" data-en="Print">طباعة</span></button>
+<button onclick="clearProgress()" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl font-medium transition shadow">🗑️ <span data-ar="مسح المحفوظ" data-en="Clear Saved">مسح المحفوظ</span></button>
+</div>
+
+<header class="max-w-4xl mx-auto bg-white p-8 rounded-3xl shadow-2xl mb-6 border-4 border-amber-500">
+<div class="text-center">
+<div class="inline-block bg-amber-700 text-white px-6 py-2 rounded-full text-sm font-bold mb-4">MATH GRADE 12 GENERAL - QUESTION 21 (WRITTEN)</div>
+<h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">📝 <span data-ar="حل المعادلات التربيعية بإكمال المربع" data-en="Solving Quadratic Equations by Completing the Square">حل المعادلات التربيعية بإكمال المربع</span></h1>
+<h2 class="text-xl text-amber-700 font-semibold mb-2"><span data-ar="القسم الثاني: الأسئلة المقالية - ص 25 (مثال 2، مثال 3)" data-en="Part Two: Written Questions - Page 25 (Examples 2 & 3)">القسم الثاني: الأسئلة المقالية - ص 25 (مثال 2، مثال 3)</span></h2>
+<p class="text-gray-600 mb-3"><span data-ar="اكتب حلّك كاملاً بخطوات واضحة في المساحة المخصصة لكل مسألة" data-en="Write your full solution with clear steps in the space provided for each problem">اكتب حلّك كاملاً بخطوات واضحة في المساحة المخصصة لكل مسألة</span></p>
+<p class="text-sm text-green-700 font-semibold">💾 <span data-ar="يُحفظ حلّك تلقائياً أثناء الكتابة" data-en="Your solution auto-saves while typing">يُحفظ حلّك تلقائياً أثناء الكتابة</span> | 📊 <span data-ar="كل مسألة 10 درجات (المجموع 100)" data-en="Each problem 10 points (Total 100)">كل مسألة 10 درجات (المجموع 100)</span></p>
+</div>
+<div class="mt-5 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+<span>📅 <span data-ar="التاريخ:" data-en="Date:">التاريخ:</span> <input type="text" id="examDate" class="border-b-2 border-amber-300 bg-transparent w-32 text-center"></span>
+<span>😊 <span data-ar="الاسم:" data-en="Name:">الاسم:</span> <input type="text" id="studentName" class="border-b-2 border-amber-300 bg-transparent w-44 text-center" placeholder="اكتب اسمك"></span>
+<span>🏫 <span data-ar="الشعبة:" data-en="Class:">الشعبة:</span> <input type="text" id="studentClass" class="border-b-2 border-amber-300 bg-transparent w-28 text-center" placeholder="الشعبة"></span>
+</div>
+<div class="mt-5 bg-amber-50 border-2 border-amber-300 rounded-xl p-4 text-sm">
+<p class="font-bold text-amber-800 mb-2 text-center">📋 <span data-ar="معيار التصحيح (لكل مسألة 10 درجات):" data-en="Grading Rubric (10 points per problem):">معيار التصحيح (لكل مسألة 10 درجات):</span></p>
+<div class="text-center">
+<span class="rubric-chip">2 <span data-ar="درجة: ترتيب المعادلة وعزل حدود س" data-en="pts: arrange equation & isolate x-terms">درجة: ترتيب المعادلة وعزل حدود س</span></span>
+<span class="rubric-chip">3 <span data-ar="درجات: إضافة (ب/2)² وكتابة المربع الكامل" data-en="pts: add (b/2)² & write perfect square">درجات: إضافة (ب/2)² وكتابة المربع الكامل</span></span>
+<span class="rubric-chip">2 <span data-ar="درجة: أخذ الجذر التربيعي للطرفين (±)" data-en="pt: take square root of both sides (±)">درجة: أخذ الجذر التربيعي للطرفين (±)</span></span>
+<span class="rubric-chip">3 <span data-ar="درجات: الحل النهائي الصحيح" data-en="pts: correct final solutions">درجات: الحل النهائي الصحيح</span></span>
+</div>
+</div>
+</header>
+
+<main class="max-w-4xl mx-auto" id="exam-content"></main>
+
+<div id="results-panel" class="max-w-4xl mx-auto mt-8 bg-white p-8 rounded-3xl shadow-2xl border-4 border-amber-500 hidden no-print">
+<h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">🏆 <span data-ar="بطاقة النتيجة" data-en="Result Card">بطاقة النتيجة</span> 🏆</h2>
+<div class="grid md:grid-cols-3 gap-4 mb-6">
+<div class="bg-amber-50 p-4 rounded-xl text-center"><p>😊 <span data-ar="الاسم" data-en="Name">الاسم</span></p><p id="res-name" class="font-bold text-xl text-amber-700">-</p></div>
+<div class="bg-orange-50 p-4 rounded-xl text-center"><p>📅 <span data-ar="التاريخ" data-en="Date">التاريخ</span></p><p id="res-date" class="font-bold text-xl text-orange-700">-</p></div>
+<div class="bg-amber-50 p-4 rounded-xl text-center"><p>🌟 <span data-ar="المجموع" data-en="Total">المجموع</span></p><p id="res-total" class="font-bold text-3xl text-amber-700">0 / 100</p></div>
+</div>
+<div class="text-center mb-6">
+<span id="success-badge" class="inline-block px-4 py-1 rounded-full font-bold bg-dcfce7 text-166534">-</span>
+<p id="success-percent" class="text-4xl font-bold text-amber-700 mt-2">0%</p>
+</div>
+<div class="bg-gray-50 p-5 rounded-xl mb-6">
+<h3 class="font-bold text-lg mb-3 text-gray-800">📊 <span data-ar="درجات المسائل:" data-en="Problem Scores:">درجات المسائل:</span></h3>
+<div class="space-y-2" id="per-problem-scores"></div>
+</div>
+<div class="text-center">
+<button id="sendEmailBtn" onclick="sendResultsToEmail()" class="bg-gradient-to-r from-amber-700 to-orange-600 text-white text-lg px-8 py-3 rounded-2xl font-bold shadow-xl transition">📧 <span data-ar="أرسل الإجابات والدرجات للمعلم" data-en="Send Answers & Scores to Teacher">أرسل الإجابات والدرجات للمعلم</span></button>
+<p id="emailStatus" class="text-sm mt-2 font-medium"></p>
+</div>
+</div>
+
+<footer class="max-w-4xl mx-auto mt-10 mb-8 text-center text-gray-500 text-sm no-print">
+© Written Exam: Completing the Square - Grade 12 General | Mr. Mohammed Hesham 📝
+</footer>
+
+<script>
+const PUBLIC_KEY = "Rb3Lq8tXaFmc5YHUH";
+const SERVICE_ID = "service_w15m64i";
+const TEMPLATE_ID = "template_5b0u2tq";
+const TARGET_EMAIL = "mohammedhesham872@gmail.com";
+emailjs.init(PUBLIC_KEY);
+
+const STORAGE_KEY = 'written_completing_square_g12_v1';
+const TOTAL_TIME = 3600;
+
+let currentLang = 'ar';
+let timeRemaining = TOTAL_TIME;
+let timerInterval = null;
+let modelsVisible = false;
+let studentAnswers = {};
+let studentScores = {};
+let studentChecks = {};
+let saveIndicatorTimeout = null;
+
+// ==================== SVG DIAGRAMS ====================
+const svgGraphs = {
+steps_flow: `<svg class="svg-graph" width="480" height="330" viewBox="0 0 480 330" xmlns="http://www.w3.org/2000/svg">
+<rect x="5" y="5" width="470" height="320" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+<text x="240" y="26" text-anchor="middle" font-size="14" fill="#92400e" font-weight="bold">📋 خطوات إكمال المربع الخمسة</text>
+<rect x="30" y="40" width="420" height="42" rx="8" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+<text x="240" y="58" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">1) رتّب المعادلة: حدود x يساراً والثابت يميناً</text>
+<text x="240" y="74" text-anchor="middle" font-size="10" fill="#92400e" font-family="'Amiri',serif">x² - 6x = 7</text>
+<path d="M240 82 L240 94" stroke="#92400e" stroke-width="2" marker-end="url(#af)"/>
+<rect x="30" y="96" width="420" height="42" rx="8" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+<text x="240" y="114" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">2) إذا كان معامل x² ≠ 1 اقسم الطرفين عليه</text>
+<text x="240" y="130" text-anchor="middle" font-size="10" fill="#92400e" font-family="'Amiri',serif">3x² - 9x = 24  →  x² - 3x = 8</text>
+<path d="M240 138 L240 150" stroke="#92400e" stroke-width="2" marker-end="url(#af)"/>
+<rect x="30" y="152" width="420" height="42" rx="8" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+<text x="240" y="170" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">3) أضف (b/2)² إلى الطرفين معاً</text>
+<text x="240" y="186" text-anchor="middle" font-size="10" fill="#92400e" font-family="'Amiri',serif">x² - 6x + 9 = 7 + 9</text>
+<path d="M240 194 L240 206" stroke="#92400e" stroke-width="2" marker-end="url(#af)"/>
+<rect x="30" y="208" width="420" height="42" rx="8" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+<text x="240" y="226" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">4) اكتب اليسار مربعاً كاملاً وخذ الجذر (±)</text>
+<text x="240" y="242" text-anchor="middle" font-size="10" fill="#92400e" font-family="'Amiri',serif">(x - 3)² = 16  →  x - 3 = ±4</text>
+<path d="M240 250 L240 262" stroke="#92400e" stroke-width="2" marker-end="url(#af)"/>
+<rect x="30" y="264" width="420" height="42" rx="8" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="240" y="282" text-anchor="middle" font-size="11" fill="#166534" font-weight="bold">5) حلّ المعادلتين الناتجتين وتحقق بالتعويض</text>
+<text x="240" y="298" text-anchor="middle" font-size="10" fill="#166534" font-family="'Amiri',serif">x = 7  or  x = -1</text>
+<defs><marker id="af" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,0 L8,0 L4,7 z" fill="#92400e"/></marker></defs>
+</svg>`,
+
+geometric_square: `<svg class="svg-graph" width="480" height="300" viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg">
+<rect x="5" y="5" width="470" height="290" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="240" y="26" text-anchor="middle" font-size="14" fill="#1e40af" font-weight="bold">🟦 لماذا نضيف (b/2)²؟ (النموذج الهندسي)</text>
+<rect x="40" y="50" width="120" height="120" fill="#93c5fd" stroke="#1e40af" stroke-width="2"/>
+<text x="100" y="115" text-anchor="middle" font-size="16" fill="#1e3a8a" font-weight="bold">x²</text>
+<rect x="160" y="50" width="45" height="120" fill="#bfdbfe" stroke="#1e40af" stroke-width="2"/>
+<text x="182" y="115" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="bold">(b/2)x</text>
+<rect x="40" y="170" width="120" height="45" fill="#bfdbfe" stroke="#1e40af" stroke-width="2"/>
+<text x="100" y="197" text-anchor="middle" font-size="11" fill="#1e3a8a" font-weight="bold">(b/2)x</text>
+<rect x="160" y="170" width="45" height="45" fill="#fbbf24" stroke="#b45309" stroke-width="3"/>
+<text x="182" y="192" text-anchor="middle" font-size="10" fill="#78350f" font-weight="bold">(b/2)²</text>
+<text x="182" y="206" text-anchor="middle" font-size="8" fill="#78350f">القطعة الناقصة!</text>
+<text x="122" y="240" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">x² + bx + (b/2)² = (x + b/2)²</text>
+<rect x="240" y="50" width="210" height="170" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="345" y="72" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">مثال: x² - 6x + ?</text>
+<text x="345" y="94" text-anchor="middle" font-size="10" fill="#1e40af">b = -6  →  b/2 = -3</text>
+<text x="345" y="114" text-anchor="middle" font-size="10" fill="#1e40af">(b/2)² = 9  ← نضيفها</text>
+<text x="345" y="138" text-anchor="middle" font-size="10" fill="#1e40af" font-family="'Amiri',serif">x² - 6x + 9 = (x - 3)²</text>
+<line x1="260" y1="152" x2="430" y2="152" stroke="#93c5fd" stroke-width="1"/>
+<text x="345" y="172" text-anchor="middle" font-size="10" fill="#1e40af">مثال: x² + 10x + ?</text>
+<text x="345" y="192" text-anchor="middle" font-size="10" fill="#1e40af">(10/2)² = 25  →  (x + 5)²</text>
+<text x="345" y="212" text-anchor="middle" font-size="9" fill="#dc2626" font-weight="bold">⚠️ لا ننسَ إضافتها للطرف الآخر أيضاً!</text>
+<text x="240" y="270" text-anchor="middle" font-size="10" fill="#1e40af">المربع الكبير الكامل = (x + b/2)² ومساحته تجمع كل الأجزاء</text>
+</svg>`,
+
+no_real_solution: `<svg class="svg-graph" width="480" height="300" viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg">
+<rect x="5" y="5" width="470" height="290" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+<text x="240" y="26" text-anchor="middle" font-size="14" fill="#991b1b" font-weight="bold">🚫 عندما يصبح الطرف الأيمن سالباً</text>
+<line x1="60" y1="230" x2="420" y2="230" stroke="#374151" stroke-width="2"/>
+<line x1="240" y1="260" x2="240" y2="60" stroke="#374151" stroke-width="2"/>
+<text x="425" y="235" font-size="11" fill="#374151" font-weight="bold">x</text>
+<path d="M 120 200 C 160 130 200 100 240 95 C 280 100 320 130 360 200" fill="none" stroke="#2563eb" stroke-width="3"/>
+<circle cx="240" cy="95" r="5" fill="#dc2626"/>
+<text x="250" y="88" font-size="10" fill="#dc2626" font-weight="bold">الرأس فوق المحور</text>
+<text x="240" y="250" text-anchor="middle" font-size="10" fill="#374151">لا يوجد تقاطع مع المحور x</text>
+<rect x="70" y="262" width="340" height="26" rx="6" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+<text x="240" y="280" text-anchor="middle" font-size="11" fill="#991b1b" font-family="'Amiri',serif" font-weight="bold">(x - 2)² = -5   →   لا حل حقيقي (جذر عدد سالب!)</text>
+<text x="120" y="60" font-size="10" fill="#991b1b">مثال: -2x² + 8x - 18 = 0</text>
+<text x="120" y="76" font-size="10" fill="#991b1b">÷(-2): x² - 4x + 9 = 0</text>
+<text x="120" y="92" font-size="10" fill="#991b1b">(x-2)² = -5 ✗</text>
+</svg>`,
+
+divide_first: `<svg class="svg-graph" width="480" height="240" viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg">
+<rect x="5" y="5" width="470" height="230" rx="12" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+<text x="240" y="26" text-anchor="middle" font-size="14" fill="#065f46" font-weight="bold">➗ عندما يكون معامل x² ≠ 1 نقسم أولاً</text>
+<rect x="40" y="45" width="180" height="60" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+<text x="130" y="70" text-anchor="middle" font-size="12" fill="#065f46" font-family="'Amiri',serif" font-weight="bold">3x² - 9x - 3 = 21</text>
+<text x="130" y="92" text-anchor="middle" font-size="10" fill="#065f46" font-family="'Amiri',serif">3x² - 9x = 24</text>
+<path d="M225 75 L255 75" stroke="#065f46" stroke-width="3" marker-end="url(#ag)"/>
+<text x="240" y="62" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="bold">÷ 3</text>
+<rect x="260" y="45" width="180" height="60" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+<text x="350" y="70" text-anchor="middle" font-size="12" fill="#065f46" font-family="'Amiri',serif" font-weight="bold">x² - 3x = 8</text>
+<text x="350" y="92" text-anchor="middle" font-size="10" fill="#065f46">الآن نكمل المربع: +(3/2)²</text>
+<rect x="40" y="125" width="400" height="50" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+<text x="240" y="146" text-anchor="middle" font-size="11" fill="#92400e" font-family="'Amiri',serif">x² - 3x + 9/4 = 8 + 9/4  →  (x - 3/2)² = 41/4</text>
+<text x="240" y="166" text-anchor="middle" font-size="10" fill="#92400e" font-family="'Amiri',serif">x - 3/2 = ±√41 / 2  →  x = (3 ± √41)/2</text>
+<rect x="40" y="188" width="400" height="34" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+<text x="240" y="210" text-anchor="middle" font-size="10" fill="#065f46" font-weight="bold">💡 القسمة على المعامل تجعل إكمال المربع ممكناً بصيغة (x + b/2)²</text>
+<defs><marker id="ag" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#065f46"/></marker></defs>
+</svg>`,
+
+vertex_connection: `<svg class="svg-graph" width="480" height="280" viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg">
+<rect x="5" y="5" width="470" height="270" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+<text x="240" y="26" text-anchor="middle" font-size="14" fill="#5b21b6" font-weight="bold">📈 صلة إكمال المربع بصورة الرأس والحل</text>
+<line x1="60" y1="200" x2="420" y2="200" stroke="#374151" stroke-width="2"/>
+<line x1="240" y1="240" x2="240" y2="50" stroke="#374151" stroke-width="2"/>
+<path d="M 120 120 C 160 210 200 235 240 238 C 280 235 320 210 360 120" fill="none" stroke="#7c3aed" stroke-width="3"/>
+<circle cx="240" cy="238" r="5" fill="#dc2626"/>
+<text x="248" y="255" font-size="10" fill="#dc2626" font-weight="bold">الرأس (h, k)</text>
+<circle cx="163" cy="200" r="5" fill="#16a34a"/>
+<circle cx="317" cy="200" r="5" fill="#16a34a"/>
+<text x="150" y="192" font-size="10" fill="#166534" font-weight="bold">h - m</text>
+<text x="310" y="192" font-size="10" fill="#166534" font-weight="bold">h + m</text>
+<rect x="70" y="52" width="340" height="52" rx="8" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+<text x="240" y="72" text-anchor="middle" font-size="11" fill="#5b21b6" font-family="'Amiri',serif" font-weight="bold">(x - h)² = m²   →   x = h ± m</text>
+<text x="240" y="92" text-anchor="middle" font-size="10" fill="#5b21b6">الحلان متناظران حول الرأس تماماً كما في الشكل</text>
+<text x="240" y="268" text-anchor="middle" font-size="10" fill="#5b21b6" font-weight="bold">مثال: (x+5)² = 4 → x = -5 ± 2 → {-3, -7} متناظران حول -5</text>
+</svg>`
+};
+
+// ==================== WRITTEN QUESTIONS DATA ====================
+const QUESTIONS = [
+{
+  section: 1,
+  statement: { ar: 'حل المعادلة الآتية بإكمال المربع: <span class="math-display">x² - 6x + 12 = 19</span>', en: 'Solve by completing the square: <span class="math-display">x² - 6x + 12 = 19</span>' },
+  svg: 'steps_flow',
+  steps: [
+    { ar: 'ننقل الثابت: x² - 6x = 19 - 12 = 7', en: 'Move constant: x² - 6x = 19 - 12 = 7' },
+    { ar: 'نضيف (b/2)² = (-6/2)² = 9 للطرفين: x² - 6x + 9 = 7 + 9', en: 'Add (b/2)² = (-6/2)² = 9 to both sides: x² - 6x + 9 = 7 + 9' },
+    { ar: 'نكتب مربعاً كاملاً: (x - 3)² = 16', en: 'Write perfect square: (x - 3)² = 16' },
+    { ar: 'نأخذ الجذر التربيعي: x - 3 = ±4', en: 'Take square root: x - 3 = ±4' },
+    { ar: 'نحل: x = 3 + 4 = 7 أو x = 3 - 4 = -1', en: 'Solve: x = 3 + 4 = 7 or x = 3 - 4 = -1' }
+  ],
+  final: { ar: 'مجموعة الحل: { 7 ، -1 }', en: 'Solution set: { 7, -1 }' },
+  check: { ar: 'تحقق: (7)² - 6(7) + 12 = 49 - 42 + 12 = 19 ✓', en: 'Check: 7² - 6(7) + 12 = 49 - 42 + 12 = 19 ✓' }
+},
+{
+  section: 1,
+  statement: { ar: 'حل المعادلة الآتية بإكمال المربع: <span class="math-display">x² - 12x + 3 = 8</span>', en: 'Solve by completing the square: <span class="math-display">x² - 12x + 3 = 8</span>' },
+  steps: [
+    { ar: 'ننقل الثابت: x² - 12x = 8 - 3 = 5', en: 'Move constant: x² - 12x = 8 - 3 = 5' },
+    { ar: 'نضيف (-12/2)² = 36 للطرفين: x² - 12x + 36 = 5 + 36', en: 'Add (-12/2)² = 36: x² - 12x + 36 = 5 + 36' },
+    { ar: 'مربع كامل: (x - 6)² = 41', en: 'Perfect square: (x - 6)² = 41' },
+    { ar: 'الجذر: x - 6 = ±√41', en: 'Root: x - 6 = ±√41' },
+    { ar: 'الحل: x = 6 ± √41 (≈ 12.4 أو ≈ -0.4)', en: 'Solution: x = 6 ± √41 (≈ 12.4 or ≈ -0.4)' }
+  ],
+  final: { ar: 'مجموعة الحل: { 6 + √41 ، 6 - √41 }', en: 'Solution set: { 6 + √41, 6 - √41 }' },
+  check: { ar: '√41 عدد غير نسبي لأن 41 ليس مربعاً كاملاً', en: '√41 is irrational since 41 is not a perfect square' }
+},
+{
+  section: 1,
+  statement: { ar: 'حل المعادلة الآتية بإكمال المربع: <span class="math-display">-2x² + 8x - 18 = 0</span>', en: 'Solve by completing the square: <span class="math-display">-2x² + 8x - 18 = 0</span>' },
+  svg: 'no_real_solution',
+  steps: [
+    { ar: 'نقسم الطرفين على -2: x² - 4x + 9 = 0', en: 'Divide both sides by -2: x² - 4x + 9 = 0' },
+    { ar: 'ننقل الثابت: x² - 4x = -9', en: 'Move constant: x² - 4x = -9' },
+    { ar: 'نضيف (-4/2)² = 4: x² - 4x + 4 = -9 + 4', en: 'Add (-4/2)² = 4: x² - 4x + 4 = -9 + 4' },
+    { ar: 'مربع كامل: (x - 2)² = -5', en: 'Perfect square: (x - 2)² = -5' },
+    { ar: 'الطرف الأيمن سالب ⇒ لا توجد حلول حقيقية', en: 'Right side negative ⇒ no real solutions' }
+  ],
+  final: { ar: 'لا حل حقيقي (مجموعة الحل الحقيقية = ∅). في الأعداد المركبة: x = 2 ± i√5', en: 'No real solution (real solution set = ∅). In complex numbers: x = 2 ± i√5' },
+  check: { ar: 'المميز: b² - 4ac = 64 - 4(-2)(-18) = 64 - 144 = -80 < 0 ✓ يؤكد', en: 'Discriminant: 64 - 144 = -80 < 0 ✓ confirms' }
+},
+{
+  section: 1,
+  statement: { ar: 'حل المعادلة الآتية بإكمال المربع: <span class="math-display">3x² - 9x - 3 = 21</span>', en: 'Solve by completing the square: <span class="math-display">3x² - 9x - 3 = 21</span>' },
+  svg: 'divide_first',
+  steps: [
+    { ar: 'ننقل الثابت: 3x² - 9x = 24', en: 'Move constant: 3x² - 9x = 24' },
+    { ar: 'نقسم على 3: x² - 3x = 8', en: 'Divide by 3: x² - 3x = 8' },
+    { ar: 'نضيف (-3/2)² = 9/4: x² - 3x + 9/4 = 8 + 9/4 = 41/4', en: 'Add (-3/2)² = 9/4: x² - 3x + 9/4 = 41/4' },
+    { ar: 'مربع كامل: (x - 3/2)² = 41/4 ثم الجذر: x - 3/2 = ±√41/2', en: 'Perfect square: (x - 3/2)² = 41/4, root: x - 3/2 = ±√41/2' },
+    { ar: 'الحل: x = (3 ± √41)/2 (≈ 4.7 أو ≈ -1.7)', en: 'Solution: x = (3 ± √41)/2 (≈ 4.7 or ≈ -1.7)' }
+  ],
+  final: { ar: 'مجموعة الحل: { (3 + √41)/2 ، (3 - √41)/2 }', en: 'Solution set: { (3 + √41)/2, (3 - √41)/2 }' },
+  check: { ar: 'لاحظ الكسور: نضيف 9/4 ونجمع 8 + 9/4 = 32/4 + 9/4 = 41/4', en: 'Fractions: 8 + 9/4 = 32/4 + 9/4 = 41/4' }
+},
+{
+  section: 1,
+  statement: { ar: 'حل المعادلة الآتية بإكمال المربع: <span class="math-display">x² + 10x + 21 = 0</span>', en: 'Solve by completing the square: <span class="math-display">x² + 10x + 21 = 0</span>' },
+  svg: 'vertex_connection',
+  steps: [
+    { ar: 'ننقل الثابت: x² + 10x = -21', en: 'Move constant: x² + 10x = -21' },
+    { ar: 'نضيف (10/2)² = 25: x² + 10x + 25 = -21 + 25', en: 'Add (10/2)² = 25: x² + 10x + 25 = -21 + 25' },
+    { ar: 'مربع كامل: (x + 5)² = 4', en: 'Perfect square: (x + 5)² = 4' },
+    { ar: 'الجذر: x + 5 = ±2', en: 'Root: x + 5 = ±2' },
+    { ar: 'الحل: x = -5 + 2 = -3 أو x = -5 - 2 = -7', en: 'Solution: x = -3 or x = -7' }
+  ],
+  final: { ar: 'مجموعة الحل: { -3 ، -7 }', en: 'Solution set: { -3, -7 }' },
+  check: { ar: 'تحقق: (-3)² + 10(-3) + 21 = 9 - 30 + 21 = 0 ✓', en: 'Check: 9 - 30 + 21 = 0 ✓' }
+},
+{
+  section: 2,
+  statement: { ar: 'حل المعادلة الآتية بإكمال المربع: <span class="math-display">x² + 4x - 5 = 0</span>', en: 'Solve by completing the square: <span class="math-display">x² + 4x - 5 = 0</span>' },
+  svg: 'geometric_square',
+  steps: [
+    { ar: 'x² + 4x = 5', en: 'x² + 4x = 5' },
+    { ar: 'نضيف (4/2)² = 4: x² + 4x + 4 = 9', en: 'Add (4/2)² = 4: x² + 4x + 4 = 9' },
+    { ar: '(x + 2)² = 9', en: '(x + 2)² = 9' },
+    { ar: 'x + 2 = ±3', en: 'x + 2 = ±3' },
+    { ar: 'x = 1 أو x = -5', en: 'x = 1 or x = -5' }
+  ],
+  final: { ar: 'مجموعة الحل: { 1 ، -5 }', en: 'Solution set: { 1, -5 }' },
+  check: { ar: 'تحقق: 1 + 4 - 5 = 0 ✓', en: 'Check: 1 + 4 - 5 = 0 ✓' }
+},
+{
+  section: 2,
+  statement: { ar: 'حل المعادلة الآتية بإكمال المربع: <span class="math-display">x² - 8x + 10 = 0</span>', en: 'Solve by completing the square: <span class="math-display">x² - 8x + 10 = 0</span>' },
+  steps: [
+    { ar: 'x² - 8x = -10', en: 'x² - 8x = -10' },
+    { ar: 'نضيف 16: x² - 8x + 16 = 6', en: 'Add 16: x² - 8x + 16 = 6' },
+    { ar: '(x - 4)² = 6', en: '(x - 4)² = 6' },
+    { ar: 'x - 4 = ±√6', en: 'x - 4 = ±√6' },
+    { ar: 'x = 4 ± √6', en: 'x = 4 ± √6' }
+  ],
+  final: { ar: 'مجموعة الحل: { 4 + √6 ، 4 - √6 }', en: 'Solution set: { 4 + √6, 4 - √6 }' },
+  check: { ar: '≈ 6.45 أو ≈ 1.55', en: '≈ 6.45 or ≈ 1.55' }
+},
+{
+  section: 2,
+  statement: { ar: 'حل المعادلة الآتية بإكمال المربع: <span class="math-display">2x² + 12x - 14 = 0</span>', en: 'Solve by completing the square: <span class="math-display">2x² + 12x - 14 = 0</span>' },
+  steps: [
+    { ar: 'نقسم على 2: x² + 6x - 7 = 0 ثم x² + 6x = 7', en: 'Divide by 2: x² + 6x - 7 = 0, then x² + 6x = 7' },
+    { ar: 'نضيف 9: x² + 6x + 9 = 16', en: 'Add 9: x² + 6x + 9 = 16' },
+    { ar: '(x + 3)² = 16', en: '(x + 3)² = 16' },
+    { ar: 'x + 3 = ±4', en: 'x + 3 = ±4' },
+    { ar: 'x = 1 أو x = -7', en: 'x = 1 or x = -7' }
+  ],
+  final: { ar: 'مجموعة الحل: { 1 ، -7 }', en: 'Solution set: { 1, -7 }' },
+  check: { ar: 'تحقق: 2(1) + 12(1) - 14 = 0 ✓', en: 'Check: 2 + 12 - 14 = 0 ✓' }
+},
+{
+  section: 2,
+  statement: { ar: 'حل المعادلة الآتية بإكمال المربع: <span class="math-display">x² + 6x + 2 = 0</span>', en: 'Solve by completing the square: <span class="math-display">x² + 6x + 2 = 0</span>' },
+  steps: [
+    { ar: 'x² + 6x = -2', en: 'x² + 6x = -2' },
+    { ar: 'نضيف 9: x² + 6x + 9 = 7', en: 'Add 9: x² + 6x + 9 = 7' },
+    { ar: '(x + 3)² = 7', en: '(x + 3)² = 7' },
+    { ar: 'x + 3 = ±√7', en: 'x + 3 = ±√7' },
+    { ar: 'x = -3 ± √7', en: 'x = -3 ± √7' }
+  ],
+  final: { ar: 'مجموعة الحل: { -3 + √7 ، -3 - √7 }', en: 'Solution set: { -3 + √7, -3 - √7 }' },
+  check: { ar: '≈ -0.35 أو ≈ -5.65', en: '≈ -0.35 or ≈ -5.65' }
+},
+{
+  section: 2,
+  statement: { ar: 'حل المعادلة الآتية بإكمال المربع وفسّر نتيجتك: <span class="math-display">4x² - 8x + 13 = 0</span>', en: 'Solve by completing the square and interpret: <span class="math-display">4x² - 8x + 13 = 0</span>' },
+  steps: [
+    { ar: 'نقسم على 4: x² - 2x + 13/4 = 0 ثم x² - 2x = -13/4', en: 'Divide by 4: x² - 2x = -13/4' },
+    { ar: 'نضيف 1: x² - 2x + 1 = -13/4 + 1 = -9/4', en: 'Add 1: x² - 2x + 1 = -9/4' },
+    { ar: '(x - 1)² = -9/4', en: '(x - 1)² = -9/4' },
+    { ar: 'الطرف الأيمن سالب ⇒ لا حل حقيقي', en: 'Right side negative ⇒ no real solution' },
+    { ar: 'مركّباً: x - 1 = ±(3/2)i أي x = 1 ± (3/2)i', en: 'Complex: x = 1 ± (3/2)i' }
+  ],
+  final: { ar: 'لا حل حقيقي (∅)؛ الحل المركب: x = 1 ± 1.5i', en: 'No real solution (∅); complex: x = 1 ± 1.5i' },
+  check: { ar: 'المميز: 64 - 4(4)(13) = 64 - 208 = -144 < 0 ✓', en: 'Discriminant: 64 - 208 = -144 < 0 ✓' }
+}
+];
+
+const CHECKLIST = [
+  { ar: 'رتّبت المعادلة وعزلت حدود س', en: 'Arranged equation & isolated x-terms' },
+  { ar: 'أضفت (ب/2)² للطرفين', en: 'Added (b/2)² to both sides' },
+  { ar: 'كتبت المربع الكامل وأخذت الجذر (±)', en: 'Wrote perfect square & took root (±)' },
+  { ar: 'وجدت الحلّين وتحققت', en: 'Found both solutions & checked' }
+];
+
+// ==================== STATE & STORAGE ====================
+function showSaveIndicator() {
+  const ind = document.getElementById('saveIndicator');
+  ind.classList.add('show');
+  if (saveIndicatorTimeout) clearTimeout(saveIndicatorTimeout);
+  saveIndicatorTimeout = setTimeout(() => ind.classList.remove('show'), 1200);
+}
+
+function saveState(show = true) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      lang: currentLang,
+      studentName: document.getElementById('studentName').value,
+      studentClass: document.getElementById('studentClass').value,
+      examDate: document.getElementById('examDate').value,
+      answers: studentAnswers,
+      scores: studentScores,
+      checks: studentChecks,
+      timeRemaining: timeRemaining,
+      savedAt: Date.now()
+    }));
+    if (show) showSaveIndicator();
+  } catch (e) { console.error(e); }
+}
+
+function loadState() {
+  try { const s = localStorage.getItem(STORAGE_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; }
+}
+
+function clearProgress() {
+  if (confirm(currentLang === 'ar' ? '⚠️ مسح كل الحلول والدرجات المحفوظة؟' : '⚠️ Clear all saved solutions and scores?')) {
+    localStorage.removeItem(STORAGE_KEY); location.reload();
+  }
+}
+
+// ==================== RENDER ====================
+function renderExam() {
+  const c = document.getElementById('exam-content');
+  let html = '';
+  let sec = 0;
+  QUESTIONS.forEach((q, i) => {
+    if (q.section !== sec) {
+      sec = q.section;
+      html += '<div class="section-head">' + (sec === 1
+        ? (currentLang === 'ar' ? '📘 القسم الأول: مسائل الكتاب (مثل 85 - 89) — لكل مسألة 10 درجات' : '📘 Part One: Textbook Problems (like 85-89) — 10 points each')
+        : (currentLang === 'ar' ? '📗 القسم الثاني: مسائل مشابهة ومتقدمة — لكل مسألة 10 درجات' : '📗 Part Two: Similar & Advanced Problems — 10 points each')) + '</div>';
+    }
+    html += '<div class="q-card" id="card-' + i + '">';
+    html += '<div class="flex flex-wrap items-center justify-between gap-2 mb-3"><span class="bg-amber-700 text-white font-extrabold rounded-full w-9 h-9 flex items-center justify-center">' + (i + 1) + '</span>'
+      + '<span class="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 rounded-full px-3 py-1">10 <span data-ar="درجات" data-en="pts">' + (currentLang === 'ar' ? 'درجات' : 'pts') + '</span></span></div>';
+    html += '<div class="q-statement arabic-math">' + q.statement[currentLang] + '</div>';
+    if (q.svg) html += '<div class="graph-container">' + svgGraphs[q.svg] + '</div>';
+    html += '<p class="text-sm font-bold text-amber-800 mt-3 mb-1">✍️ <span>' + (currentLang === 'ar' ? 'الحل:' : 'Solution:') + '</span></p>';
+    html += '<textarea class="answer-area" id="sol-' + i + '" placeholder="' + (currentLang === 'ar' ? 'اكتب خطوات حلّك هنا بالترتيب: (1) رتّب المعادلة ... (2) أكمل المربع ... (3) خذ الجذر ... (4) اكتب الحلّين' : 'Write your solution steps here in order: (1) arrange ... (2) complete the square ... (3) take root ... (4) write both solutions') + '"></textarea>';
+    html += '<div class="flex flex-wrap gap-2 mt-3 no-print">';
+    CHECKLIST.forEach((ch, j) => {
+      const ck = (studentChecks[i] && studentChecks[i][j]) ? 'checked' : '';
+      html += '<label class="check-item"><input type="checkbox" data-q="' + i + '" data-c="' + j + '" ' + ck + '> ' + ch[currentLang] + '</label>';
+    });
+    html += '</div>';
+    html += '<div class="flex flex-wrap items-center justify-between gap-3 mt-4 no-print">';
+    html += '<button onclick="toggleModel(' + i + ')" class="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded-lg font-bold transition">🔑 <span>' + (currentLang === 'ar' ? 'الحل النموذجي' : 'Model solution') + '</span></button>';
+    html += '<label class="flex items-center gap-2 text-sm font-bold text-blue-800">' + (currentLang === 'ar' ? 'الدرجة الممنوحة:' : 'Score awarded:') + ' <input type="number" min="0" max="10" step="0.5" class="score-input" id="score-' + i + '" data-q="' + i + '"> / 10</label>';
+    html += '</div>';
+    html += '<div class="model-box" id="model-' + i + '" style="display:none">';
+    html += '<p class="font-extrabold text-green-800 mb-2">' + (currentLang === 'ar' ? '✅ الحل النموذجي خطوة بخطوة:' : '✅ Model solution step by step:') + '</p>';
+    q.steps.forEach((s, k) => {
+      html += '<div class="model-step"><span class="step-no">' + (k + 1) + '</span>' + s[currentLang] + '</div>';
+    });
+    html += '<div class="final-answer arabic-math">' + q.final[currentLang] + '</div>';
+    html += '<p class="text-xs text-green-700 mt-2 font-bold">' + q.check[currentLang] + '</p>';
+    html += '</div></div>';
+  });
+  c.innerHTML = html;
+  // restore saved content
+  QUESTIONS.forEach((q, i) => {
+    const ta = document.getElementById('sol-' + i);
+    if (ta && studentAnswers[i]) ta.value = studentAnswers[i];
+    const sc = document.getElementById('score-' + i);
+    if (sc && studentScores[i] !== undefined && studentScores[i] !== '') sc.value = studentScores[i];
+  });
+  attachListeners();
+}
+
+function attachListeners() {
+  const c = document.getElementById('exam-content');
+  c.addEventListener('input', (e) => {
+    if (e.target.classList.contains('answer-area')) {
+      const i = e.target.id.replace('sol-', '');
+      studentAnswers[i] = e.target.value;
+      saveState(false);
+    }
+    if (e.target.classList.contains('score-input')) {
+      const i = e.target.dataset.q;
+      studentScores[i] = e.target.value;
+      saveState(false);
+    }
+  });
+  c.addEventListener('change', (e) => {
+    if (e.target.type === 'checkbox') {
+      const i = e.target.dataset.q, j = e.target.dataset.c;
+      if (!studentChecks[i]) studentChecks[i] = {};
+      studentChecks[i][j] = e.target.checked;
+      saveState(true);
+    }
+    if (e.target.classList.contains('score-input') || e.target.classList.contains('answer-area')) saveState(true);
+  });
+}
+
+function toggleModel(i) {
+  const m = document.getElementById('model-' + i);
+  m.style.display = (m.style.display === 'none') ? 'block' : 'none';
+}
+
+function toggleAllModels() {
+  modelsVisible = !modelsVisible;
+  QUESTIONS.forEach((q, i) => {
+    document.getElementById('model-' + i).style.display = modelsVisible ? 'block' : 'none';
+  });
+}
+
+// ==================== GRADING ====================
+function gradeExam() {
+  let total = 0;
+  const rows = [];
+  QUESTIONS.forEach((q, i) => {
+    let v = parseFloat(studentScores[i]);
+    if (isNaN(v)) v = 0;
+    v = Math.max(0, Math.min(10, v));
+    total += v;
+    const hasWork = (studentAnswers[i] || '').trim().length > 0;
+    rows.push({ i: i, score: v, hasWork: hasWork });
+  });
+  document.getElementById('res-total').textContent = total + ' / 100';
+  document.getElementById('res-name').textContent = document.getElementById('studentName').value || (currentLang === 'ar' ? 'طالب' : 'Student');
+  document.getElementById('res-date').textContent = document.getElementById('examDate').value || new Date().toLocaleDateString();
+  const pct = total;
+  document.getElementById('success-percent').textContent = pct + '%';
+  const badge = document.getElementById('success-badge');
+  let cls, txt;
+  if (pct >= 90) { cls = 'bg-green-100 text-green-800'; txt = currentLang === 'ar' ? '🌟 ممتاز جداً' : '🌟 Outstanding'; }
+  else if (pct >= 75) { cls = 'bg-yellow-100 text-yellow-800'; txt = currentLang === 'ar' ? '👏 ممتاز' : '👏 Excellent'; }
+  else if (pct >= 50) { cls = 'bg-blue-100 text-blue-800'; txt = currentLang === 'ar' ? '👍 جيد' : '👍 Good'; }
+  else { cls = 'bg-red-100 text-red-800'; txt = currentLang === 'ar' ? '💪 يحتاج تحسين' : '💪 Needs improvement'; }
+  badge.className = 'inline-block px-4 py-1 rounded-full font-bold ' + cls;
+  badge.textContent = txt;
+  const list = document.getElementById('per-problem-scores');
+  list.innerHTML = rows.map(r => '<div class="flex justify-between items-center p-2 bg-white rounded-lg border border-gray-200"><span class="font-bold text-gray-700">' + (currentLang === 'ar' ? 'المسألة' : 'Problem') + ' ' + (r.i + 1) + (r.hasWork ? '' : (currentLang === 'ar' ? ' ⚠️ بدون كتابة حل' : ' ⚠️ no written work')) + '</span><span class="font-extrabold text-amber-700">' + r.score + ' / 10</span></div>').join('');
+  document.getElementById('results-panel').classList.remove('hidden');
+  document.getElementById('results-panel').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ==================== EMAIL ====================
+function sendResultsToEmail() {
+  const btn = document.getElementById('sendEmailBtn');
+  const status = document.getElementById('emailStatus');
+  btn.disabled = true;
+  btn.textContent = currentLang === 'ar' ? '⏳ جاري الإرسال...' : '⏳ Sending...';
+  const name = document.getElementById('studentName').value || 'N/A';
+  const klass = document.getElementById('studentClass').value || 'N/A';
+  const date = document.getElementById('examDate').value || new Date().toLocaleDateString();
+  const total = document.getElementById('res-total').textContent;
+  let html = '<div style="font-family:Arial;direction:rtl"><h2>📝 امتحان كتابي: إكمال المربع - رياضيات 12 عام</h2>'
+    + '<p><b>الاسم:</b> ' + name + ' | <b>الشعبة:</b> ' + klass + ' | <b>التاريخ:</b> ' + date + '</p>'
+    + '<p><b>المجموع:</b> ' + total + '</p><hr>';
+  QUESTIONS.forEach((q, i) => {
+    const ans = (studentAnswers[i] || '(لم يُكتب حل)').replace(/\n/g, '<br>');
+    const sc = studentScores[i] !== undefined && studentScores[i] !== '' ? studentScores[i] : '—';
+    html += '<div style="border:1px solid #ccc;border-radius:8px;padding:10px;margin:10px 0">'
+      + '<p style="background:#dbeafe;padding:6px;border-radius:6px"><b>س' + (i + 1) + ':</b> ' + q.statement.ar.replace(/<[^>]+>/g, '') + ' <span style="color:#b45309">(الدرجة: ' + sc + '/10)</span></p>'
+      + '<p><b>حل الطالب:</b><br>' + ans + '</p>'
+      + '<p style="color:#166534"><b>الحل النموذجي:</b> ' + q.steps.map(s => s.ar).join(' ← ') + ' ⇒ <b>' + q.final.ar + '</b></p></div>';
+  });
+  html += '</div>';
+  emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+    to_email: TARGET_EMAIL, student_name: name, student_class: klass, exam_date: date,
+    total_score: total, success_rate: total + '%', grade: document.getElementById('success-badge').textContent,
+    answers_table: html
+  }).then(() => {
+    status.textContent = currentLang === 'ar' ? '✅ أُرسلت الإجابات والدرجات بنجاح' : '✅ Sent successfully';
+    status.style.color = '#16a34a'; btn.disabled = false;
+  }).catch(err => {
+    status.textContent = currentLang === 'ar' ? '❌ فشل الإرسال' : '❌ Failed';
+    status.style.color = '#dc2626'; btn.disabled = false;
+    console.error(err);
+  });
+}
+
+// ==================== TIMER / LANG / INIT ====================
+function updateTimerDisplay() {
+  const m = Math.floor(timeRemaining / 60), s = timeRemaining % 60;
+  document.getElementById('timer').textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+}
+function startTimer() {
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timeRemaining--;
+    updateTimerDisplay();
+    if (timeRemaining % 60 === 0) saveState(false);
+    if (timeRemaining <= 600) document.getElementById('timer').classList.add('timer-warning');
+    if (timeRemaining <= 0) { clearInterval(timerInterval); alert(currentLang === 'ar' ? '⏰ انتهى الوقت!' : "⏰ Time's up!"); }
+  }, 1000);
+}
+function setLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.body.classList.toggle('en-mode', lang === 'en');
+  document.querySelectorAll('[data-ar]').forEach(el => { el.textContent = el.getAttribute('data-' + lang); });
+  renderExam();
+  saveState(false);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = loadState();
+  if (saved) {
+    currentLang = saved.lang || 'ar';
+    studentAnswers = saved.answers || {};
+    studentScores = saved.scores || {};
+    studentChecks = saved.checks || {};
+    timeRemaining = (saved.timeRemaining !== undefined) ? saved.timeRemaining : TOTAL_TIME;
+  }
+  document.getElementById('btn-ar').classList.toggle('active', currentLang === 'ar');
+  document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+  document.body.classList.toggle('en-mode', currentLang === 'en');
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-ar]').forEach(el => { el.textContent = el.getAttribute('data-' + currentLang); });
+  if (saved) {
+    document.getElementById('studentName').value = saved.studentName || '';
+    document.getElementById('studentClass').value = saved.studentClass || '';
+    document.getElementById('examDate').value = saved.examDate || '';
+  }
+  ['studentName', 'studentClass', 'examDate'].forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('input', () => saveState(false));
+    el.addEventListener('blur', () => saveState(true));
+  });
+  renderExam();
+  startTimer();
+});
+window.addEventListener('beforeunload', () => saveState(false));
+</script>
+</body>
+</html>
